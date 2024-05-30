@@ -30,7 +30,7 @@ jobs:
           path-to-document: 'https://gist.github.com/jcheng5/f97a51e9724099d7149015eae747de99' # e.g. a CLA or a DCO document
           # branch should not be protected
           branch: 'main'
-          allowlist: user1,bot*
+          # allowlist: user1,bot*
           remote-organization-name: posit-dev # enter the remote organization name where the signatures should be stored (Default is storing the signatures in the same repository)
           remote-repository-name: cla-assistant-signatures # enter the  remote repository name where the signatures should be stored (Default is storing the signatures in the same repository)
 
