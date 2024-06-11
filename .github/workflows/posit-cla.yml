@@ -1,4 +1,4 @@
-name: "CLA Assistant"
+name: "Posit CLA Assistant"
 on:
   workflow_call:
     secrets:
