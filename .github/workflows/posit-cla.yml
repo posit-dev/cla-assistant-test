@@ -18,7 +18,12 @@ jobs:
       - name: "Strip whitespace from comment body"
         id: strip_whitespace
         run: |
-          echo "body=$(echo ${{ github.event.comment.body }} | xargs)" >> $GITHUB_OUTPUT
+          COMMENT_BODY=<< "a6872054e1c874ab096a30191680522d" | sed '/^[[:space:]]*$/d; s/^[[:space:]]*//; s/[[:space:]]*$//' 
+          ${{ github.event.comment.body }}
+          a6872054e1c874ab096a30191680522d
+          echo "body<<a6872054e1c874ab096a30191680522d" >> $GITHUB_OUTPUT
+          echo "$COMMENT_BODY" >> $GITHUB_OUTPUT
+          echo "a6872054e1c874ab096a30191680522d" >> $GITHUB_OUTPUT
       - name: "Debug output"
         run: |
           echo "body:'${{ steps.strip_whitespace.outputs.body }}'"
