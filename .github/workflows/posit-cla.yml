@@ -15,14 +15,20 @@ jobs:
       pull-requests: write
       statuses: write
     steps:
+      - name: "Generate random fence for heredocs"
+        id: random_fence
+        run: |
+          echo -n "value=" >> $GITHUB_OUTPUT
+          tr -dc A-Za-z0-9 </dev/urandom | head -c 60 >> $GITHUB_OUTPUT
+          echo >> $GITHUB_OUTPUT
       - name: "Strip whitespace from comment body"
         id: strip_whitespace
         run: |
-          echo "body<<a6872054e1c874ab096a30191680522d" >> $GITHUB_OUTPUT
-          cat << "a6872054e1c874ab096a30191680522d" | sed '/^[[:space:]]*$/d; s/^[[:space:]]*//; s/[[:space:]]*$//' >> $GITHUB_OUTPUT
+          echo "body<<${{ steps.random_fence.outputs.value }}" >> $GITHUB_OUTPUT
+          cat << "${{ steps.random_fence.outputs.value }}" | sed '/^[[:space:]]*$/d; s/^[[:space:]]*//; s/[[:space:]]*$//' >> $GITHUB_OUTPUT
           ${{ github.event.comment.body }}
-          a6872054e1c874ab096a30191680522d
-          echo "a6872054e1c874ab096a30191680522d" >> $GITHUB_OUTPUT
+          ${{ steps.random_fence.outputs.value }}
+          echo "${{ steps.random_fence.outputs.value }}" >> $GITHUB_OUTPUT
       - name: "Debug output"
         run: |
           echo "body:'${{ steps.strip_whitespace.outputs.body }}'"
