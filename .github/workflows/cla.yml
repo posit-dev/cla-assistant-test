@@ -14,6 +14,6 @@ permissions:
 
 jobs:
   RequireCLA:
-    uses: posit-dev/cla-assistant/.github/workflows/posit-cla.yml@v1
+    uses: posit-dev/cla-assistant/.github/workflows/posit-cla.yml@v2
     secrets:
       CLA_ASSISTANT_PAT: ${{ secrets.CLA_ASSISTANT_PAT }}
